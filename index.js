@@ -1,13 +1,28 @@
-const express = require('express')
-const app = express();
-const port = 4000;
+const express = require('express');
+const cors = require('cors');
+
+const quizRouter = require("./router/quiz.router");
+const categoriesRouter = require("./router/categories.router");
+const { loginRouter, signupRouter } = require("./router/auth.router");
+const routeNotFound = require("./middleware/routeNotFound");
 const quizzes = require("./db/quizzes");
-app.get('/',(req,res)=>{
+
+const app = express(); //Creating a server
+app.use(cors());
+app.use(express.json());
+
+const PORT = 4000;
+
+app.get("/", (req, res) => {
     res.send("hello geeks");
 })
-app.get('/quiz',(res,req)=>{
-    res.send(quizzes);
-})
-app.listen(port||process.env.port,()=>{
-    console.log("Server is Ready... ");
+
+app.use("/categories", categoriesRouter)
+app.use("/quiz", quizRouter);
+app.use("/auth/login", loginRouter);
+app.use("/auth/signup", signupRouter);
+app.use(routeNotFound);
+
+app.listen(process.env.PORT || PORT, () => {
+    console.log("server started....");
 })

@@ -4,7 +4,8 @@
   "description": "Backend with Render",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,9 @@
   },
   "homepage": "https://github.com/Rohansoundane015/QuizApp#readme",
   "dependencies": {
-    "cros": "^1.0.1",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "uuid": "^9.0.1"
   }
 }
